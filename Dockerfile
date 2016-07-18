@@ -5,6 +5,7 @@ MAINTAINER Apaar Shanker <apaar92@gmail.com>
 USER root
 
 RUN apt-get update
+RUN apt-get install -y libstdc++6
 # Install python
 RUN apt-get install -y python
 RUN apt-get install -y build-essential python-dev
