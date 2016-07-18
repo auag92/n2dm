@@ -16,9 +16,13 @@ ADD requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
 ADD Asap-3.8.4 Asap-3.8.4
+RUN cd Asap-3.8.4 \
+                  && make depend \
+                  && make serial \
+                  && make install
 
 #CMD octave -q compiling.m
-CMD python Asap-3.8.4/setup.py install
+#CMD python Asap-3.8.4/setup.py install
 
 RUN ls
 RUN pwd
