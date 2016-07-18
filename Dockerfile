@@ -9,7 +9,7 @@ RUN apt-get update
 RUN apt-get install -y python
 RUN apt-get install -y build-essential python-dev
 RUN apt-get install -y python-pip
-RUN apt-get install -y octave
+#RUN apt-get install -y octave
 
 #Install Python Dependencies
 ADD requirements.txt requirements.txt
