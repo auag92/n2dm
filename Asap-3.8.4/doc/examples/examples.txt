@@ -1,0 +1,7 @@
+The Asap documentation has been moved!
+======================================
+
+Please see the updated Asap documentation at
+
+https://wiki.fysik.dtu.dk/asap
+

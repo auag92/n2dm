@@ -1,0 +1,56 @@
+#!/bin/bash
+
+# Identify the version of MPI used when compiling Asap
+MPIDIR=`python -c 'import asapmpiinfo3; asapmpiinfo3.printmpiinfo()'`
+echo "MPIDIR: $MPIDIR"
+
+if [ -d $MPIDIR ]; then
+    # Is it openmpi or lam
+    MPIVARSFROM=$MPIDIR/bin/mpivars-*.sh
+    if [ -r $MPIVARSFROM ]; then
+	# It is openmpi
+	source $MPIVARSFROM
+	#MPIRUNARGS="-hostfile $PBS_NODEFILE"
+	MPIRUNARGS=""
+    elif [ -x $MPIDIR/bin/lamboot ]; then
+	# It is LAM, we need to run LAMBOOT and hope the library path is OK.
+	LAMBOOT=$MPIDIR/bin/lamboot
+	LAMHALT=$MPIDIR/bin/lamhalt
+	MPIRUNARGS='C'
+    else
+	echo "Giving up, unknown MPI installation: $MPIDIR"
+    fi
+else
+    echo "The MPI version used by Asap is gone: $MPIDIR"
+    exit 1
+fi
+
+if [[ "$1" == "-np" ]]; then
+    MPIRUNARGS="$MPIRUNARGS -np $2"
+    shift 2
+fi
+
+# Find the asap-python executable.
+ASAPEXE=`which asap-python`
+
+# Print some debugging info
+echo "mpirun:"
+ls -l $MPIDIR/bin/mpirun
+echo "asap-python:"
+ls -l $ASAPEXE
+
+# If it is LAM, we need to boot the LAM system
+if [ "x$LAMBOOT" != "x" ]; then
+    $LAMBOOT -v $PBS_NODEFILE
+fi
+
+echo "Running: " $MPIDIR/bin/mpirun $MPIRUNARGS $ASAPEXE $@
+$MPIDIR/bin/mpirun $MPIRUNARGS $ASAPEXE $@
+RETVAL=$?
+
+# We need to shut down the LAM system if applicable
+if [ "x$LAMHALT" != "x" ]; then
+    $LAMHALT
+fi
+
+exit $RETVAL

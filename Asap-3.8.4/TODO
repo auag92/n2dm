@@ -1,0 +1,13 @@
+* Investigate why -DTIMING apparently can cause spurious core dumps.
+
+* Verify NPTdynamics with respect to conservation of the Gibbs Energy.
+  It is not the 1/3 factor missing in the pV term, as pV is zero in
+  the test case.
+
+  A number of bugs were found in the calculation of the Gibbs energy.
+  Currently, the non-conservation is not very large, but I am unsure
+  if it is a problem.
+
+* The center of mass may gain a momentum in Langevin dynamics.  Prevent it!
+
+* Make test suite and better examples.

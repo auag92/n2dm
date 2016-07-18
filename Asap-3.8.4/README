@@ -1,0 +1,43 @@
+This is the README file for the ASAP 3 project
+
+
+DIRECTORY STRUCTURE
+===================
+
+Basics:
+
+  The source files for the central parts of Asap, including the calculators.
+
+Brenner:
+
+  The library for the Brenner potential.
+
+Debug:
+
+  Files helpful when debugging.
+
+Examples:
+
+  Example scripts.
+
+Interface:
+
+  The C++/Python interface.
+
+Parallel:
+
+  Source code for parallel simulations using MPI.
+
+Python:
+
+  The Python modules.
+
+Test:
+
+  The test suite.
+
+Swig:
+
+  Leftovers from Asap 2, soon to go away.
+
+

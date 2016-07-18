@@ -1,0 +1,28 @@
+### Job name
+#PBS -N AsapParTest
+
+### Mail to user
+#PBS -m ae
+
+### Queue name (small, medium, long, verylong)
+#PBS -q medium
+
+### Number of nodes
+#PBS -l nodes=4:xeon
+
+# This job's working directory
+cd $PBS_O_WORKDIR
+
+# Some informational messages
+echo Running on host `hostname`
+echo Time is `date`
+echo Directory is `pwd`
+echo This jobs runs on the following processors:
+cat $PBS_NODEFILE
+echo Python executable: `which python`
+
+# Now, run the script.
+
+asap-niflheim TestAll.py --parallel
+
+

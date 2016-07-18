@@ -1,0 +1,14 @@
+# Unknown system with GNU compiler
+CC=gcc
+CXX=g++
+CFLAGS = -pipe -O2 -Wall -Wno-sign-compare -Wno-unused-function
+CXXFLAGS = $(CFLAGS)
+LIBS = -lm
+CSRC_EXTRA =
+SWIG=swig
+MPIINCLUDES=
+CXXSHARED = $(CXX) -shared
+CXXFLAGSGPROF = $(CFLAGS) -pg -g
+CXXFLAGSDEBUG = $(CFLAGS)
+DEPENDFLAG = -MM
+DEPENDCLEAN = sed -e 's@/usr/[^ ]*@@g' | sed -e '/^ *\\ *$$/d'

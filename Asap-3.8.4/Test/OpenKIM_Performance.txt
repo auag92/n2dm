@@ -1,0 +1,43 @@
+Tests with 5e5 atoms:
+
+INTEL COMPILER:
+
+			1 CPU core		8 CPU cores		64 CPU cores		216 CPU cores
+CuAu Native EMT:	6.496  			8.106 			9.997 			10.483		us/(atom/cpu)
+CuAu NEIGH_RVEC_H: 	9.677 			11.481			13.279			14.014		us/(atom/cpu)
+CuAu NEIGH_RVEC_F: 	16.635			18.945			21.128			21.859		us/(atom/cpu)
+CuAu NEIGH_PURE_H: 	9.427 			11.406			13.201			13.923		us/(atom/cpu)
+CuAu NEIGH_PURE_F: 	15.875			18.722			21.539			21.962		us/(atom/cpu)
+CuAu MI_OPBC_H: 1	9.352 			11.307			13.188			13.701		us/(atom/cpu)
+CuAu MI_OPBC_F: 	16.141			18.843			21.355			21.739		us/(atom/cpu)
+			                               			      			      
+Cu Native EMT: 		3.630 			4.432 			5.529 			5.847 		us/(atom/cpu)
+Cu NEIGH_RVEC_H: 	5.919 			6.817 			7.902 			8.457 		us/(atom/cpu)
+Cu NEIGH_RVEC_F: 	10.978			12.127			13.409			13.639		us/(atom/cpu)
+Cu NEIGH_PURE_H: 	5.803 			6.674 			7.936 			8.205 		us/(atom/cpu)
+Cu NEIGH_PURE_F: 	10.745			11.736			13.223			13.504		us/(atom/cpu)
+Cu MI_OPBC_H: 		5.622 			6.564 			7.723 			8.158 		us/(atom/cpu)
+Cu MI_OPBC_F: 		10.633			11.776			13.100			13.458		us/(atom/cpu)
+
+   			X5570@2.93GHz		X5570@2.93GHz		X5570@2.93GHz		X5570@2.93GHz
+ 
+ 
+GNU COMPILER:
+
+CuAu Native EMT:	11.096			12.705			14.722			15.670		us/(atom/cpu)
+CuAu NEIGH_RVEC_H:	11.781			13.374			15.439			16.030		us/(atom/cpu)
+CuAu NEIGH_RVEC_F:	19.524			21.641			23.857			24.766		us/(atom/cpu)
+CuAu NEIGH_PURE_H:	12.361			13.954			16.238			16.838		us/(atom/cpu)
+CuAu NEIGH_PURE_F:	20.303			22.856			24.980			25.688		us/(atom/cpu)
+CuAu MI_OPBC_H: 	11.971			13.899			15.920			16.438		us/(atom/cpu)
+CuAu MI_OPBC_F: 	20.261			22.864			25.190			25.941		us/(atom/cpu)
+			      			      			      			      
+Cu Native EMT: 		6.466 			7.433 			8.435 			8.960 		us/(atom/cpu)
+Cu NEIGH_RVEC_H:	7.055 			7.872 			9.236 			9.730 		us/(atom/cpu)
+Cu NEIGH_RVEC_F:	13.110			14.256			15.793			16.306		us/(atom/cpu)
+Cu NEIGH_PURE_H:	7.493 			8.169 			9.553 			9.994 		us/(atom/cpu)
+Cu NEIGH_PURE_F:	13.849			14.720			16.189			16.630		us/(atom/cpu)
+Cu MI_OPBC_H: 		7.227 			8.098 			9.455 			9.880 		us/(atom/cpu)
+Cu MI_OPBC_F: 		13.634			14.699			16.254			16.640		us/(atom/cpu)
+
+   			X5570@2.93GHz		X5570@2.93GHz		X5570@2.93GHz		X5570@2.93GHz

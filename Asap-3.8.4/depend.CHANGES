@@ -1,0 +1,61 @@
+-*- text -*-
+
+Every time a new header file is included in a C / C++ file, a line
+MUST be added to this file (and the file must be checked into CVS),
+thereby forcing the user to rebuild the dependencies.
+
+Format:
+Date      Version    Description
+
+15Sep06	  2.15.12    Introduced this mechanism for forcing dependency updates.
+27nov06	  2.16.3     Include Exception.h from RegularGridDecomposition.
+24may07	  2.17.3     Added RawRadialDistribution.h
+07dec07   2.17.4     Added Brenner and Lennard-Jones potentials.
+14dec07   2.17.5     Added the global Asap.h header file.
+20feb08   2.17.8     Changed headers for LJPotential.
+05mar08   2.17.10    Timing reenabled.  Controlled from Asap.h
+26mar08	  2.19.0     Added NeighborLocator abstract base class.
+03apr08	  2.19.1     New NeighborCellLocator class.
+04apr08	  2.19.2     New NeighborList2 class.
+26jun08	  2.19.3     Headers fixed in Brenner potential.
+08jul08	  2.19.4     Changed header dependencies for neighbor locators.
+07oct08	  3.0.1	     Asap 3.X: lots of changes to the header files.
+21oct08	  3.1.0	     Introduced AsapSerial.cpp and AsapParallel.cpp.
+27oct08	  3.1.0	     Removed GhostPotential.h and GhostAtoms.h.
+29oct08	  3.1.0	     Implemented ParallelAtoms.
+17nov08	  3.1.1	     Python version of EMT parameter provider.
+26nov08	  3.1.1	     DomainDecomposition.h depends on Vec.h
+28nov08	  3.1.2	     Implemented ParallelPotential.
+11dec08	  3.1.3	     ParallelPotentialInterface.h added.
+13jan09	  3.1.5	     Atoms.h now includes Asap.h
+20jan09   3.1.6      CNA and CoordinationNumbers implemented.
+07apr09	  3.1.7	     Bug in Makefile fixed.
+03jul09   3.1.9      MonteCarloEMT introduced.
+04aug09	  3.1.10     MonteCarloEMT temporarily disabled.
+17aug09	  3.1.11     MonteCarloEMT reenabled.
+15sep09	  3.2.3	     Debug.cpp introduced.
+22sep09	  3.2.4	     Atoms.h and ParallelAtoms.h use IVec.h
+29sep09	  3.2.5	     Stacktrace mechanism enabled.
+09feb10	  3.3.1	     Added BrennerPotential.
+12feb10	  3.3.2	     Exception.h includes AsapPython.h (NotImplementedError).
+07jun10	  3.3.3	     CoordinationNumbers now tries to reuse Atoms object.
+31aug10   3.3.6	     Morse potential added.
+02feb11   3.4.1	     MPI.h renamed AsapMPI.h.
+15mar11	  3.4.4	     *** IMPORTANT *** On Niflheim do 'make clean' first!!
+17mar11   3.5.0      Added C++ implementation of VelocityVerlet.
+22mar11   3.5.0      Remove vectool.h
+31mar11   3.5.2      Removed AsapBarrier.h
+01apr11   3.5.3      Added OpenMPInterface.h
+31may11   3.5.4      Added EMT2011 (initial version).
+20jun11   3.5.5      Added RGL potential.
+03jan12   3.5.6      Added Potential.cpp for error recovery.
+06feb12   3.5.7      Added FullCNA object.
+14mar12   3.5.9      A number of header files now include Atoms.h
+08nov12   3.5.10     Add MolecularDynamics.h
+15jan13   3.5.13     Introduce a C++ namespace.
+12jun13   3.6.3      Renamed EMT2011 to EMT2013.
+27nov13   3.6.6      AsapPython.h now includes Exception.h
+09jan14   3.7.2      Changes due to refactoring of parallelization code.
+11Mar14   3.7.5      Add OpenKIMcalculator.
+03Nov14   3.7.9      Moved numerous headerfiles around for OpenKIMcalculator.
+09Nov14   3.8.0      Remove ParallelAtoms.h accidentally included from ImagePotential.cpp

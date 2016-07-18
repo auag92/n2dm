@@ -1,0 +1,10 @@
+The Asap documentation has been moved!
+======================================
+
+* The manual can be found at
+  https://wiki.fysik.dtu.dk/asap/Manual
+
+
+* All the ASAP documentation can be found at
+  https://wiki.fysik.dtu.dk/asap
+

@@ -7,3 +7,4 @@ sympy
 nose
 scikit-learn
 pymatgen
+ase

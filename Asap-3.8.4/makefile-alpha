@@ -1,0 +1,18 @@
+# Definitions for the alpha architecture using the system compiler.
+CC=cc
+CXX=cxx
+SWIG=swig
+MPICC=$(CC)
+MPICXX=$(CXX)
+MPIINCLUDES = -I/usr/local/mpi/include
+CXXSHARED = $(CXX) -shared -expect_unresolved "Py*" -expect_unresolved "_Py*"
+CSRC_EXTRA = stacktrace.c
+CFLAGS = -ieee -std -Olimit 1500 -DNDEBUG -O
+CXXFLAGS = $(CFLAGS) -D__USE_STD_IOSTREAM
+CXXFLAGSGPROF = -g3 -O2 -pg -D__USE_STD_IOSTREAM -ptr ./cxx_repository-pg
+CXXFLAGSDEBUG = -g3 -O2 -D__USE_STD_IOSTREAM -ptr ./cxx_repository-debug
+LIBS = -lm
+DEPENDFLAG = -M -D__USE_STD_IOSTREAM -ptr ./cxx_repository
+# Dependclean removes system header files from dependencies.  May be 
+# replaced by "cat".
+DEPENDCLEAN = grep -v ': /usr'

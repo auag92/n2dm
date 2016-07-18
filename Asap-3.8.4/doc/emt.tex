@@ -1,0 +1,152 @@
+\documentclass[a4paper,12pt]{article}
+
+\begin{document}
+
+\section*{The EMT potential in FAST.}
+
+
+\subsection*{The energy}
+
+The distance between atoms $i$ and $j$ is called $r_{ij}$.  The
+weigthfunction $\Theta$ is defined as:
+\begin{equation}
+  \label{theta}
+  \Theta(r) = {1 \over 1 + \exp\Bigl(\alpha_{cut} (r - r_{cut}) \Bigr)}
+\end{equation}
+
+The contributions to $\sigma_1$ and $\sigma_2$ for atom $i$ from all
+atoms with atomic number $Z'$ are called $\sigma_{1,Z'}(i)$ and
+$\sigma_{2,Z'}(i)$ respectively.
+
+\begin{equation}
+  \label{sigmaone}
+  \sigma_{1,Z'}(i) = \sum_{j \in Z'} \Theta(r_{ij}) \exp\Bigl( -
+  \eta_{2,Z'} r_{ij} + \eta_{2,Z'} s^{eq}_{Z'} \beta \Bigr)
+\end{equation}
+\begin{equation}
+  \label{sigmatwo}
+  \sigma_{2,Z'}(i) = \sum_{j \in Z'} \Theta(r_{ij}) \exp\left( -
+  {\kappa_Z' \over \beta} r_{ij} + \kappa_{Z'} s^{eq}_{Z'}  \right)
+\end{equation}
+
+If both $i$ and $j$ are hydrogen:
+\begin{equation}
+  \label{sigmah}
+  \sigma_H(i) = \sum_j \Theta(r_{ij}) \Bigl( \exp(-A_H r_{ij}) -
+  \exp(-A_H r_{cut}) \Bigr)
+\end{equation}
+
+The total sigma1 and sigma2 are given by ($Z$ is the atomic number
+of atom $i$, the sums go over all atomic numbers)
+\begin{equation}
+  \label{totsigmaone}
+  \sigma_1(i) = \mbox{MAX}\Bigl[ 10^{-9}, \sum_{Z'} \chi(Z,Z')
+  \sigma_{1,Z'}(i) \Bigr]
+\end{equation}
+\begin{equation}
+  \label{totsigmatwo}
+  \sigma_2(i) = \mbox{MAX}\Bigl[ 10^{-9}, \sum_{Z'} \chi(Z,Z')
+  \sigma_{2,Z'}(i) \Bigr]
+\end{equation}
+
+The neutral-sphere radius $s$ is given by
+\begin{equation}
+  \label{s}
+  s(i) = s^{eq}_Z - {1 \over \beta \eta_{2,Z}} \ln \left({ \sigma_1(i)
+    \over 12 \gamma_1}\right)
+\end{equation}
+
+The cohesive energy $E_c$ and the atomic-sphere energy $E_{as}$:
+\begin{equation}
+  \label{Ec}
+  E_c(i) = E^0_Z (\lambda_Z (s(i) - s^{eq}_Z) + 1)
+  \exp \Bigl(-\lambda_Z (s(i) - s^{eq}_Z) \Bigl)
+\end{equation}
+\begin{equation}
+  \label{Eas}
+  E_{as} = 6 V^0_Z \exp \Bigr(-\kappa_Z (s(i) - s^{eq}_Z) \Bigl) -
+  {1 \over 2} V^0_Z {\sigma_2(i) \over \gamma_2}
+\end{equation}
+
+
+\subsection*{Forces}
+Real soon now \ldots
+
+
+\subsection*{The stress tensor.}
+
+The $\alpha,\beta$ component of the stress tensor of atom $i$ is
+called $\sigma_{\alpha\beta}(i)$.  It is given by
+\begin{equation}
+  \label{stress}
+  \sigma_{\alpha\beta}(i) = {1 \over v_i} \left( - {p_\alpha(i)
+    p_\beta(i) \over m_i} + {1 \over 2} \sum_{j \neq i} {\partial
+    E_{pot} \over \partial r_{ij}} \cdot {r_{ij,\alpha} r_{ij,\beta}
+    \over r_{ij}} \right)
+\end{equation}
+where $p\alpha(i)$ is the $\alpha$ component of the momentum of atom
+$i$, $r_{ij,\alpha}$ is the $\alpha$ component of the vector between
+atoms $i$ and $j$, and $E_{pot} = E_c + E_{as}$.
+
+\begin{equation}
+  {\partial E_c(i) \over \partial s(i)} = - \lambda_Z E_c(i) + E^0_Z
+  \lambda_Z \exp \Bigr( -\lambda_Z (s(i) - s^{eq}_Z) \Bigr)
+\end{equation}
+\begin{equation}
+  {\partial s(i) \over \partial \sigma_1(i)} = - {1 \over \beta \eta_{2,Z}
+    \sigma_1(i)} 
+\end{equation}
+\begin{equation}
+  {\partial E_{as}(i) \over \partial s(i)} = - 6 V^0_Z \kappa_Z \exp \Bigl(
+  - \kappa_z (s(i) - s^{eq}_Z) \Bigr)
+\end{equation}
+\begin{equation}
+  {\partial E_{as}(i) \over \partial \sigma_2(i)} = - {V^0_Z \over 2 \gamma_2}
+\end{equation}
+\begin{equation}
+  {\partial \sigma_1(i) \over \partial r_{ij}} = \sum_{Z'} \chi(Z, Z')
+  \sum_{j \in Z'} \Theta(r_{ij}) \Bigr( \alpha_{cut} \Theta(r_{ij}) -
+  \eta_{2,Z'} - \alpha_{cut} \Bigl) \exp \Bigr( \eta_{2,Z'} r_{ij} +
+  \eta_{2,Z'} s^{eq}_{Z'} \beta \Bigr) 
+\end{equation}
+\begin{equation}
+  {\partial \sigma_2(i) \over \partial r_{ij}} = \sum_{Z'} \chi(Z, Z')
+  \sum_{j \in Z'} \Theta(r_{ij}) \Bigr( \alpha_{cut} \Theta(r_{ij}) -
+  {\kappa_{Z'} \over \beta} - \alpha_{cut} \Bigl) \exp \Bigr(
+  {\kappa_{Z'} \over \beta} r_{ij} +
+  \kappa_{Z'} s^{eq}_{Z'} \Bigr) 
+\end{equation}
+
+ Is has been used that ${\partial \Theta(r) \over \partial r} =
+\alpha_{cut} \Theta(r) \bigr(\Theta(r) - 1\bigl)$.  Note that
+$\partial E_{as}(i) \over \partial \sigma_2(i)$ only depends on $i$
+through the atoms atomic number.  Now we get
+\begin{equation}
+  \label{ederiv}
+  {\partial E_{pot}(i) \over \partial r_{ij}} = {\partial E_c(i) \over
+    \partial s(i)} {\partial s(i) \over \partial \sigma_1(i)}
+  {\partial \sigma_1(i) \over \partial r_{ij}} + {\partial E_{as}(i)
+    \over \partial s(i)} {\partial s(i) \over \partial \sigma_1(i)}
+  {\partial \sigma_1(i) \over \partial r_{ij}} + {\partial E_{as}(i)
+    \over \sigma_2(i)} {\partial \sigma_2(i) \over \partial r_{ij}}
+\end{equation}
+
+It is important to notice that this is \emph{not} the quantity that
+appears in equation \ref{stress}, since equation \ref{ederiv} gives
+the change in the energy of atom $i$ when $r_{ij}$ is changed, whereas
+${\partial E_{pot} \over \partial r_{ij}}$ is the change in the
+energy of the \emph{total} system when $r_{ij}$ is changed.
+\begin{equation}
+  {\partial E_{pot} \over \partial r_{ij}} = {\partial E_{pot}(i) \over
+    \partial r_{ij}} + {\partial E_{pot}(j) \over \partial r_{ij}}
+\end{equation}
+Note, however, that the term multiplying ${\partial E_{pot} \over
+  \partial r_{ij}}$ in equation \ref{stress} is unchanged under the
+interchange of $i$ and $j$.  This means that the contribution to the
+stress for atom $i$ from ${\partial E_{pot}(j) \over \partial r_{ij}}$
+is equal to a similar term (${\partial E_{pot}(j) \over \partial
+  r_{ji}}$) in the stress of atom $j$, and thus only needs to be
+calculated once.  But in the program, one cannot then make the
+substitution ${1 \over 2} \sum_{j \neq i} \longrightarrow \sum_{j < i}$.
+  
+\end{document}

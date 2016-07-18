@@ -1,0 +1,30 @@
+# x86_64 processor with the GNU compiler
+$(info Processor is $(PROCESSOR))
+
+ifeq ($(PROCESSOR),Opteron)
+MARCH = -march=opteron
+else ifeq ($(PROCESSOR),Core2)
+MARCH = -march=nocona
+else
+MARCH =
+endif
+
+CC=gcc
+CXX=g++
+CFLAGS = -O1 -g $(MARCH) -fno-omit-frame-pointer -fno-inline -m64 -pipe -fPIC -fsignaling-nans -DSTACKTRACELINUX -Wall -Wno-sign-compare -Wno-unused-function -DSTL_VECTOR_DEBUG
+CXXFLAGS = $(CFLAGS)
+SWIGGEDCXXFLAGS = -Wno-strict-aliasing -Wno-uninitialized
+BRENNERCFLAGS =  -Wno-strict-aliasing -Wno-unused
+EXTRA_LIBS = -lbfd -liberty
+LIBS = -lm $(EXTRA_LIBS)
+CSRC_EXTRA = stacktrace.c
+SWIG=swig
+MPIINCLUDES=
+CXXSHARED = $(CXX) -shared
+CXXFLAGSGPROF = -O3 -g -fPIC -pg $(MARCH) -m64
+CXXFLAGSDEBUG = -O3 -g -fPIC $(MARCH) -m64
+DEPENDFLAG = -MM
+DEPENDCLEAN = sed -e 's@/usr/[^ ]*@@g' | sed -e '/^ *\\ *$$/d'
+# PYINSTALL := $(DESTDIR)/$(PYPREFIX)/lib64/python$(PYVER)/site-packages/Asap
+# BININSTALL := $(DESTDIR)/$(PYPREFIX)/lib64/python$(PYVER)/site-packages
+CPP_LIB="/usr/lib/libstdc++.so.6"

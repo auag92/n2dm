@@ -1,0 +1,7 @@
+Examples of how to use the code
+
+md_demo.py:
+  A demo of two dislocations annihilating.  Well, they are supposed to
+  annihilate, but they don't - perhaps they are not set up correctly.
+  Uses rasmol to plot the atoms according to the zy component of the
+  stress.

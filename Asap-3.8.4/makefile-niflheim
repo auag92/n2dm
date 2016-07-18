@@ -1,0 +1,15 @@
+# Setup file for building PRMs for Niflheim
+# CC, CXX and LINKFORSHARED come from the environment.
+# CFLAGS and LIBS come from the environment, but are extended here.
+##CC=
+##CXX=
+CFLAGS := $(CFLAGS) -DSTACKTRACELINUX
+CXXFLAGS := $(CFLAGS)
+EXTRA_LIBS = -lbfd -liberty
+LIBS := ${LIBS} ${EXTRA_LIBS} -lm
+CSRC_EXTRA := stacktrace.c
+MPIINCLUDES=
+CXXSHARED := $(CXX) -shared
+DEPENDFLAG := -MM
+DEPENDCLEAN := sed -e 's@/usr/[^ ]*@@g' | sed -e '/^ *\\ *$$/d'
+##LINKFORSHARED =

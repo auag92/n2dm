@@ -1,0 +1,15 @@
+# Intel compiler on Pentium 4
+CC=icc
+CXX=icpc
+CFLAGS = -O3 -g -xW -DSTACKTRACELINUX -vec_report0
+CXXFLAGS = $(CFLAGS)
+LIBS = -lsvml -lm
+CSRC_EXTRA = stacktrace.c
+SWIG=swig
+MPIINCLUDES=
+CXXSHARED = $(CXX) -shared
+CXXFLAGSGPROF = -O3 -g -fPIC -pg
+CXXFLAGSDEBUG = -O3 -tpp7 -xW -g
+DEPENDFLAG = -MM
+DEPENDCLEAN = sed -e 's@/usr/[^ ]*@@g' | sed -e '/^ *\\ *$$/d'
+# CPP_LIB="/usr/lib/libstdc++.so.6"

@@ -1,0 +1,4 @@
+This directory contains files for exporting the ASAP potentials to OpenKIM
+(see http://openkim.org).  The files in this directory are NOT intended to be
+compiled as part of ASAP.  Instead, they are to be copied (by export_to_kim.py) 
+to the OpenKIM directory structure, and compiled there.

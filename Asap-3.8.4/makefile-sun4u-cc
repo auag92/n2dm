@@ -1,0 +1,18 @@
+# sun4u (e.g. DTU databar system)
+CC=cc
+CXX=CC
+CFLAGS = -g -O2 -xcode=pic32 -DBRENNER_DWORD_ALIGN
+#CXXFLAGS = $(CFLAGS) -DSUN_SQRT_LITERAL_HACK
+CXXFLAGS = $(CFLAGS) -DSUN_SQRT_LITERAL_HACK
+LIBS = -lm -lCstd -lCrun
+CSRC_EXTRA = 
+SWIG=swig
+MPIINCLUDES=
+CXXSHARED = $(CXX) -G
+CXXFLAGSGPROF = -O3 -g -fPIC -pg
+CXXFLAGSDEBUG = -O3 -tpp7 -xW -g
+DEPENDFLAG = -MM
+DEPENDCLEAN = sed -e 's@/usr/[^ ]*@@g' | sed -e '/^ *\\ *$$/d'
+CPP_LIB="/usr/lib/libstdc++.so.6"
+DEPENDCC=gcc
+DEPENDCXX=g++

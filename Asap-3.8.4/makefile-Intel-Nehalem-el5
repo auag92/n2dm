@@ -1,0 +1,21 @@
+# Intel compiler on Niflheim - Nehalem nodes.
+
+CC=icc
+CXX=icpc
+OPENMPFLAGS=
+OPENMPFLAGS = -openmp
+#CFLAGS = -O3 -g -xHost -fPIC -DSTACKTRACEBFD -vec_report0 -openmp -openmp-report2
+CFLAGS = -O3 -g -xHost -fPIC -DSTACKTRACEBFD -vec_report1 $(OPENMPFLAGS)
+CXXFLAGS = $(CFLAGS)
+EXTRA_LIBS = -lbfd -liberty -openmp
+LIBS = -lsvml -lm $(EXTRA_LIBS)
+CSRC_EXTRA = stacktrace.c
+SWIG=swig
+MPIINCLUDES=
+CXXSHARED = $(CXX) -shared $(OPENMPFLAGS)
+CXXFLAGSGPROF = -O3 -g -fPIC -pg
+CXXFLAGSDEBUG = -O3 -tpp7 -xW -g
+DEPENDFLAG = -MM
+DEPENDCLEAN = sed -e 's@/usr/[^ ]*@@g' | sed -e '/^ *\\ *$$/d'
+# PYINSTALL := $(DESTDIR)/$(PYPREFIX)/lib64/python$(PYVER)/site-packages/Asap
+# BININSTALL := $(DESTDIR)/$(PYPREFIX)/lib64/python$(PYVER)/site-packages

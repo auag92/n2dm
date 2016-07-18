@@ -1,0 +1,26 @@
+#!/bin/bash
+
+### Job name
+#PBS -N AsapTest
+
+### Mail to user
+#PBS -m ae
+
+### Queue name (small, medium, long, verylong)
+#PBS -q medium
+
+### Number of nodes
+#PBS -l nodes=1
+
+# This job's working directory
+cd $PBS_O_WORKDIR
+
+# Some informational messages
+echo Running on host `hostname`
+echo Time is `date`
+echo Directory is `pwd`
+echo This jobs runs on the following processors:
+cat $PBS_NODEFILE
+
+# Run the script
+time python TestAll.py

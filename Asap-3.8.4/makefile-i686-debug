@@ -1,0 +1,18 @@
+# Pentium 4 with the GNU compilers
+CC=gcc
+CXX=g++
+CFLAGS = -march=pentium4 -pipe -O2 -g -DSTACKTRACELINUX -Wall -Wno-sign-compare -Wno-unused-function
+#CFLAGS = -march=pentium4 -pipe -g -DSTACKTRACE=linux -Wall -Wno-sign-compare -Wno-unused-function
+CXXFLAGS = $(CFLAGS)
+SWIGGEDCXXFLAGS = -Wno-strict-aliasing -Wno-uninitialized
+BRENNERCFLAGS =  -Wno-strict-aliasing -Wno-unused
+LIBS = -lm
+CSRC_EXTRA = stacktrace.c
+SWIG=swig
+MPIINCLUDES=
+CXXSHARED = $(CXX) -shared
+CXXFLAGSGPROF = -O3 -g -fPIC -pg
+CXXFLAGSDEBUG = -O3 -tpp7 -xW -g
+DEPENDFLAG = -MM
+DEPENDCLEAN = sed -e 's@/usr/[^ ]*@@g' | sed -e '/^ *\\ *$$/d'
+CPP_LIB="/usr/lib/libstdc++.so.6"

@@ -1,0 +1,26 @@
+#!/bin/bash
+### Job name
+#PBS -N AsapOptTiming
+
+### Mail to user
+#PBS -m ae
+
+### Queue name (small, medium, long, verylong)
+#PBS -q medium
+
+### Number of nodes (node property ev67 wanted)
+#PBS -l nodes=1:opteron285
+
+# This job's working directory
+cd $PBS_O_WORKDIR
+
+# Some informational messages
+echo Running on host `hostname`
+echo Time is `date`
+echo Directory is `pwd`
+echo This jobs runs on the following processors:
+cat $PBS_NODEFILE
+echo Python executable: `which python`
+
+python OfficialTiming.py
+

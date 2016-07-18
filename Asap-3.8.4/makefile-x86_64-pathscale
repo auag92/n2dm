@@ -1,0 +1,18 @@
+# x86_64 with the pathscale compilers
+CC=pathcc
+CXX=pathCC
+#CFLAGS = -m64 -O3 -OPT:Ofast -OPT:fast_math -LNO:vintr=1 -LNO:vintr_verbose=ON -LNO:simd=1 -LNO:simd_verbose=ON -fPIC -DSTACKTRACE=linux -DSPLITLOOPS
+CFLAGS = -m64 -O3 -OPT:Ofast -OPT:fast_math -LNO:vintr=1 -LNO:simd=1 -fPIC -DSTACKTRACELINUX -DSPLITLOOPS
+CXXFLAGS = $(CFLAGS)
+LIBS = -lm
+CSRC_EXTRA = stacktrace.c
+SWIG=swig
+MPIINCLUDES=
+CXXSHARED = $(CXX) -shared
+CXXFLAGSGPROF = -O3 -g -fPIC -pg
+CXXFLAGSDEBUG = -O3 -tpp7 -xW -g
+DEPENDFLAG = -MM
+DEPENDCLEAN = sed -e 's@/usr/[^ ]*@@g' | sed -e '/^ *\\ *$$/d'
+# PYINSTALL := $(DESTDIR)/$(PYPREFIX)/lib64/python$(PYVER)/site-packages/Asap
+# BININSTALL := $(DESTDIR)/$(PYPREFIX)/lib64/python$(PYVER)/site-packages
+CPP_LIB="/usr/lib/libstdc++.so.6"

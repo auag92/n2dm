@@ -1,0 +1,27 @@
+# Mac OS X with the GNU compilers
+CC=gcc
+CXX=g++
+#OPENMPFLAGS=-fopenmp
+CFLAGS = -O3 -pipe -g -Wall -Wno-sign-compare -Wno-unused-function -Wno-write-strings
+CXXFLAGS = $(CFLAGS)
+PARPOSTFIX = -par
+MPICFLAGS = $(CFLAGS) $(OPENMPFLAGS)
+MPICXXFLAGS = $(MPICFLAGS)
+
+# Extra flags to silence compiler warnings in Interface and ParallelInterface
+IFACEFLAGS = -Wno-strict-aliasing
+BRENNERCFLAGS =  -Wno-strict-aliasing -Wno-unused
+#LIBS = -lm -lgomp
+LIBS = -lm
+CSRC_EXTRA = 
+MPIINCLUDES=
+CXXSHARED = $(CXX) -bundle -undefined dynamic_lookup
+CXXFLAGSGPROF = -O3 -g -fPIC -pg
+CXXFLAGSDEBUG = -O3 -tpp7 -xW -g
+DEPENDFLAG = -MM
+DEPENDCLEAN = sed -e 's@/usr/[^ ]*@@g' | sed -e '/^ *\\ *$$/d'
+CPP_LIB="/usr/lib/libstdc++.so.6"
+EXTRA_LIBS = $(OPENMPFLAGS)
+# When using homebrew's Python the LINKFORSHARED variable gets set to nonsense. 
+LINKFORSHARED = 
+

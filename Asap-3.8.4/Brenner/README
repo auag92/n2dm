@@ -1,0 +1,48 @@
+Information about the Brenner potential included in Asap.
+---------------------------------------------------------
+
+The code implements the version of Brenners potential published in
+
+    Donald W Brenner, Olga A Shenderova, Judith A Harrison, Steven J
+    Stuart, Boris Ni and Susan B Sinnott: "A second-generation
+    reactive empirical bond order (REBO) potential energy expression
+    for hydrocarbons", J. Phys.: Condens. Matter 14 (2002) 783-802.
+    doi: 10.1088/0953-8984/14/4/312
+
+The implementation is based on a C implentation published at
+http://www.rahul.net/pcm/brenner/ .  The files doing the actual
+calculation have been extracted from the rest of the MD code available
+there, and included in Asap.
+
+The code has been "converted" to C++ (mainly by changing the file
+extension from .c to .cpp) in order to be able to use STL containers a
+few places.
+
+
+
+
+Personal Note (TO BE REMOVED XXXX)
+----------------------------------
+
+
+Det ser ud til at potentialet implementerer den udgave, der er
+publiceret i Brenner-etal-JPhysCondMatt-14-783.pdf
+
+----
+
+Main calculation is in caguts() in caguts.c
+
+Det hårde arbejde sker i mtable.c, hvor alle funktioner tabellægges.
+Der slås så op i disse tabeller i caguts.
+
+caguts bør kunne modificeres til at bruge Asap nabolister.
+
+Skal også bruge pibond.c og sili_germ.c samt AtomPairInfoState.*
+
+Mangle flere funktioner har føjet sig til listerne...
+
+PROBLEM: Identificer længden af nabolisterne!  rmax!
+
+Jeg ønsker ikke at bruge brenner.h p.gr.a. copyright, desuden er der
+kun enkelte linjer, der skal bruges.
+

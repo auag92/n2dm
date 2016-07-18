@@ -1,0 +1,30 @@
+# x86_64 with the open64 compilers.   Emacs: This is a -*- Makefile -*-
+
+# NOTE: The option -OPT:fast_math enables vectorized exp() and sqrt()
+# for a massive performance gain.  This causes linkage to the internal
+# compiler library libacml_mv.a which unfortunately is not compiled
+# with -fPIC.  The result is a linkage error when building the serial
+# version of Asap (the shared object), and a core dump when running
+# the parallel version (asap-python).  SOLUTION: Link with the
+# corresponding shared library from ACLM.
+
+# The compiler options -LNO:simd=2 -LNO:vintr=2 cause a slight
+# performance LOSS, and have been turned off.
+
+# The -Wno-write-strings option turns off annoying warnings whenever a
+# string literal is passed to a Python API function declared as taking
+# a 'char *' instead of a 'const char *'.
+
+CC=opencc
+CXX=openCC
+OPENMPFLAGS=-mp
+CFLAGS = -march=auto -O3 -g -fno-inline-functions -fPIC -OPT:Ofast -OPT:fast_math -fPIC -DSTACKTRACELINUX -DSPLITLOOPS -Wno-write-strings $(OPENMPFLAGS)
+#CFLAGS = -march=auto -O3 -g -fPIC -OPT:Ofast -OPT:fast_math -fPIC -DSTACKTRACELINUX -Wno-write-strings
+CXXFLAGS = $(CFLAGS)
+ACML = /opt/acml/4.4.0/open6464/lib
+LIBS = -L$(ACML) -Wl,-rpath=$(ACML) -lacml_mv -lm
+CSRC_EXTRA = stacktrace.c
+CXXSHARED = $(CXX) -shared $(OPENMPFLAGS)
+DEPENDFLAG = -MM
+DEPENDCLEAN = sed -e 's@/usr/[^ ]*@@g' | sed -e '/^ *\\ *$$/d'
+EXTRA_LIBS = $(OPENMPFLAGS) -L$(ACML) -Wl,-rpath=$(ACML) -lacml_mv

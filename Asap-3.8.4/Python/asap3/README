@@ -1,0 +1,68 @@
+This is the Python part of Asap version 3.x.
+
+MAIN SUBDIRECTORIES:
+
+analysis: 
+    Modules for analysing simulations.
+
+Internal:
+    Modules internal to Asap - do not load in scripts unless
+    you know what you are doing.
+
+io:
+    I/O modules overriding the ones provided in ASE.  Mainly
+    Trajectory stuff supporting parallel simulations.
+
+md:
+    Molecular Dynamics modules overriding the ones from ASE.
+
+optimize:
+    Energy minimization modules override the ones from ASE.
+
+MonteCarlo:
+    General framework for doing Monte Carlo simulations.
+
+Setup:
+    Modules for setting up special structures.  Could have been
+    part of ASE instead.
+
+NanoparticleMC:
+    Modules for two-level Monte Carlo simulations of nanoparticles.
+    This is more part of a research project than generally useful.
+
+Tools:
+    Deprecated.
+
+Utilities:
+    Deprecated.
+
+Filters:
+    Deprecated.
+
+
+
+MAIN PYTHON FILES:
+
+__init__.py:
+    The main Asap initialization file.
+
+version.py:
+    The Asap version number.
+
+constraints.py:
+    Replaces the ASE contraints.
+
+EMT2013Parameters.py:
+    General parameters for the EMT 2013 potential
+
+GuptaParameters.py:
+    Parameters for the Gupta potential.
+
+mpi.py:
+    Parallel communication.
+
+testtools.py:
+    Tools for the test suite.
+
+Timing.py:
+    Timing of the C++ part of Asap.

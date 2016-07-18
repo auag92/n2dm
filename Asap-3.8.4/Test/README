@@ -1,0 +1,52 @@
+    -*- text -*-
+
+This directory contains the beginning of a test suite.  
+
+The following tests can be performed.  The output should be
+self-explanatory, ending with the statement "all tests successful" or
+the like.
+
+* test_reproducible.py
+
+    Checks that the energies, forces and stresses have not changed
+    since version 1.4 of 08.11.2002.
+
+* testtools.py
+
+    A module for implementing the test suite.  Tests itself when run
+    on the command line.  This is the only test where tests are expected_
+    to fail.
+
+* testStress.py
+
+    Test energy and stress calculations within the EMT.  Cu and Ag are tested.
+
+* testVerlet.py
+
+    Test verlet dynamics and that the EMT potential is 100%
+    reproducible.  The file testVerlet.pickle contains the expected
+    final configuration and final forces + stresses.  Even the
+    smallest change to the forces returned by EMT will break this test.
+
+* testTrajectory.py
+
+    Tests trajectories by running the same test as testVerlet, storing
+    configurations in a trajectory, before reading and checking the
+    last configuration.
+
+* testException.py
+
+    Tests that exceptions are correctly propagated from C++ to Python.
+
+* Langevin.py
+
+    Tests Langevin dynamics.  Very slow.
+
+* testNPT.py
+
+    Tests NPT dynamics.  Very slow.
+
+* testSubset.py
+
+    Tests the subset filter.
+

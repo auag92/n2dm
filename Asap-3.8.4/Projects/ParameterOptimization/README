@@ -1,0 +1,13 @@
+This folder contains scripts for EMT2013 parameter optimization.
+
+submit.py:
+
+Submit an optimization job for pure elements to Niflheim.
+
+
+submit_alloy.py:
+
+Submit an optimization job for alloy parameters to Niflheim.  
+Assumes that pure elements have already been optimized.
+
+

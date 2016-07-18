@@ -1,0 +1,20 @@
+# PPC 64 using IBM compilers.  Possibly broken.
+
+CC=xlc
+CXX=xlC
+SWIG=swig
+MPICC=$(CC)
+MPICXX=$(CXX)
+MPIINCLUDES = -I/usr/local/mpi/include
+CXXSHARED = $(CXX) -qmkshrobj
+CSRC_EXTRA = 
+CFLAGS = -O4 -qpic=large -qhot=vector -DSPLITLOOPS
+CXXFLAGS = $(CFLAGS)
+CXXFLAGSGPROF = -g3 -O2 -pg -D__USE_STD_IOSTREAM -ptr ./cxx_repository-pg
+CXXFLAGSDEBUG = -g3 -O2 -D__USE_STD_IOSTREAM -ptr ./cxx_repository-debug
+LIBS = -lm
+DEPENDFLAG = -qmakedep -MF-
+# Dependclean removes system header files from dependencies.  May be 
+# replaced by "cat".
+DEPENDCLEAN = grep -v ': /usr'
+CPP_LIB="/usr/lib/libstdc++.so.6"

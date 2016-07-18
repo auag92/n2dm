@@ -1,0 +1,58 @@
+Effective Medium Theory (EMT) model driver based on the EMT implementation in
+ASAP (https://wiki.fysik.dtu.dk/asap).
+
+Effective Medium Theory is a many-body potential of the same class as Embedded
+Atom Method, Finnis-Sinclair etc.  The main term in the energy per atom is the
+local density of atoms.
+
+The functional form implemented here is that of Ref. 1.  The principles behind
+EMT are described in Refs. 2 and 3 (with 2 being the more detailed and 3 being
+the most pedagogical).  Be aware that the functional form and even some of the
+principles have changed since refs 2 and 3.  EMT can be considered the last
+step of a series of approximations starting with Density Functional Theory,
+see Ref 4.
+
+These files are based on Asap version $version (SVN revision $svnrevision).
+
+
+REFERENCES:
+
+[1] Jacobsen, K. W., Stoltze, P., & Nørskov, J.: "A semi-empirical effective
+medium theory for metals and alloys". Surf. Sci. 366, 394–402  (1996).
+
+[2] Jacobsen, K. W., Nørskov, J., & Puska, M.: "Interatomic interactions in
+the effective-medium theory". Phys. Rev. B 35, 7423–7442 (1987).
+
+[3] Jacobsen, K. W.: "Bonding in Metallic Systems: An Effective-Medium
+Approach".  Comments Cond. Mat. Phys. 14, 129-161 (1988).
+
+[4] Chetty, N., Stokbro, K., Jacobsen, K. W., & Nørskov, J.: "Ab initio
+potential for solids". Phys. Rev. B 46, 3798–3809 (1992).
+
+
+CHANGES:
+
+Changes in 002:
+
+* Bug fix: version 001 would crash with most tests/simulators due to an internal
+  consistency test failing.
+  
+* Bug fix: version 001 reported a slightly too short cutoff, leading to small
+  inaccuracies (probably only for Au).
+  
+* Bug fix: Memory leaks removed.
+  
+* Enhancement: version 002 now supports ghost atoms (parallel simulations, many
+  other tests).
+  
+* Enhancement: version 002 now supports all neighbor list types, although the 
+  half lists give the best performance.
+  
+
+KNOWN ISSUES / BUGS:
+
+* On-the-fly modifications of the parameters is not supported.  It should be
+  implemented.
+
+* More testing is needed.
+

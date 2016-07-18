@@ -1,0 +1,170 @@
+A more up-to-date version of this document can be found at
+https://wiki.fysik.dtu.dk/asap/Installation
+
+
+
+============
+Installation
+============
+
+.. contents::
+
+Asap version 2 and 3
+====================
+
+Asap exists in two main versions, version 2.X and 3.X.  This document
+is common for installing them both.  **The two versions can be installed
+simultaneously without interfering with each other!**
+
+Download Asap
+=============
+
+* The latest version of Asap-2 is version 2.20.0 (released 11. July 2008).
+
+  It is available as a compressed tar file: Asap-2.20.0.tar.gz_
+
+
+* The latest version of Asap-3 is version 3.0.2 (released 15. October 2008).
+
+  It is available as a compressed tar file: Asap-3.0.2.tar.gz_
+
+.. _Asap-2.20.0.tar.gz: http://dcwww.camp.dtu.dk/campos/download/Asap-2.20.0.tar.gz
+.. _Asap-3.0.2.tar.gz: http://dcwww.camp.dtu.dk/campos/download/Asap-3.0.2.tar.gz
+
+It is also possible to get Asap from the our SVN_ server.
+
+Asap is released under the GNU Public License version 2. See the file
+LICENSE which accompanies the downloaded files, or see the license at
+GNU's web server at http://www.gnu.org/licenses/gpl.html.
+
+.. _our CVS server: wiki:ASE:Campos_CVS
+
+Quick installing guide
+======================
+
+1. If you have not already done so, you should install the version of
+   the Atomic Simulation Environment relevant for the desired version of Asap:
+
+   For Asap version 2.X, `install the Campos Atomic Simulation
+   Environment version 2.X.`__
+
+   For Asap version 3.X, `install the Atomic Simulation Environment
+   version 3.X.`__
+
+2. Unpack the tarball and go to the Asap-x.y directory::
+
+     tar xvfz Asap-x.y.tar.gz
+     cd Asap-x.y
+
+3. Install with the standard command for installing Python packages::
+
+     python setup.py install
+
+   (this must be done as root).  
+
+These instructions install the serial version of Asap, compiled with
+the same compiler as was used to compile Python (most likely gcc).  
+
+__ wiki:ASE:Download
+__ https://wiki.fysik.dtu.dk/ase/download.html
+
+
+Special installation instructions
+=================================
+
+Installation using the Intel compiler and/or installation on clusters
+---------------------------------------------------------------------
+
+If you want to install the parallel version, or if you want to compile
+Asap with the Intel or PathScale C++ compiler (for better performance), you can
+install Asap using GNU make.  The Intel and PathScale compilers are
+automatically detected and used if available.
+
+To install the serial version::
+
+  make depend
+  make serial
+  make install
+
+To install both the serial and parallel version (not yet available in
+Asap 3.X)::
+
+  make depend
+  make all
+  make install-parallel
+
+For more information, please read the `ASAP detailed installation
+instructions`_.
+
+In-place installation for SVN users
+-----------------------------------
+
+If you got Asap from SVN_ and always want to use the newest version,
+you probably want to compile it in-place.  This can be done with::
+
+  make depend
+  make serial
+
+if you only want the serial version, or::
+
+  make depend
+  make all
+
+if you also need the parallel version.  After updating from SVN_, you
+only need to re-run ``make depend`` if ``make serial`` (or ``make
+all``) fails with an instruction to do so.
+
+To use Asap compiled in this way, you need to put it on your PYTHON
+path.  Assuming that Asap is placed in $HOME/Asap, PYTHONPATH should
+be set to::
+
+  $HOME/Asap/Python:$HOME/Asap/Swig/XXX  (for Asap version 2.X)
+
+or::
+
+  $HOME/Asap/Python:$HOME/Swig/XXX  (for Asap version 2.X)
+
+where XXX is the output of the command ``uname -m``.
+
+
+Instructions for special Linux distributions
+--------------------------------------------
+
+RPM-based distributions
+  No RPM's are provided, since they are more likely to go wrong than
+  the simple distutils-based installation described above.
+
+Gentoo Linux
+  Hopelessly outdated ebuilds are available from `our Gentoo Linux
+  guide <wiki:ASE:Installing_CAMPOS_software_on_Gentoo_Linux>`_.
+
+Mac OS X
+--------
+
+Asap can be installed on a Mac running OS X, but for Asap version 2
+you cannot use the default compiler (`bug 144`_).  You first have to
+change to gcc version 3.3::
+
+  sudo gcc_select 3.3
+  sudo python setup.py install
+  sudo gcc_select 4.0
+
+**Hint:** If you forgot to change the compiler, remember to erase the
+``build`` subdirectory before trying again.  Otherwise Asap will not
+be recompiled correctly.
+
+Note that we do not use Macs, so these instructions may be outdated.
+
+.. _bug 144: https://bugzilla.fysik.dtu.dk/show_bug.cgi?id=144
+
+
+Installation on the DTU gbar machines
+-------------------------------------
+
+Getting Asap to work on the DTU gbar machines is tricky, read
+`Installing Asap on the DTU databar`_.
+
+Asap is used together with VASE (Visual ASE) for teaching purposes
+(mainly course 10030 Physics and Nanotechnology).  Instructions for
+installing that combination in the DTU Databar can be found here:
+`Installing VASE and Asap in the DTU databar`_.

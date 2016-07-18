@@ -1,0 +1,24 @@
+### Job name
+#PBS -N AsapParTestOpt
+
+### Mail to user
+#PBS -m ae
+
+### Queue name (small, medium, long, verylong)
+#PBS -q medium
+
+### Number of nodes (Four opteron CPUs on one physical machine)
+#PBS -l nodes=4:opteron
+
+# This job's working directory
+cd $PBS_O_WORKDIR
+
+# Some informational messages
+echo Running on host `hostname`
+echo Time is `date`
+echo Directory is `pwd`
+echo This jobs runs on the following processors:
+cat $PBS_NODEFILE
+echo Python executable: `which python`
+
+asap-niflheim TestAll.py --parallel

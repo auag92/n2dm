@@ -1,0 +1,28 @@
+#!/usr/bin/python
+# Emacs: This is -*- python -*-
+
+import os
+import sys
+import numpy as np
+
+from ase.io.trajectory import PickleTrajectory
+
+if len(sys.argv) > 1:
+    filename = sys.argv[1]
+else:
+    raise Warning('No file specified.')
+
+if not os.path.isfile(filename):
+    raise Warning('The file does not exist!')
+
+from_traj = PickleTrajectory(filename, "r")
+to_traj = PickleTrajectory(filename[:-5] + "-wrapped.traj", "w")
+
+for atoms in from_traj:
+    pos = np.dot(atoms.get_scaled_positions(), atoms.get_cell())
+    atoms.set_positions(pos)
+    atoms.calc = None
+    to_traj.write(atoms)
+
+from_traj.close()
+to_traj.close()

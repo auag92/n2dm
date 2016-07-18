@@ -1,0 +1,18 @@
+This Tools directory under the ASAP project contains small Python
+programs, intended to be run from the command line to serve purposes
+not central to the functioning of Asap.  This includes setup scripts,
+file conversion, etc.
+
+Most scripts are written in such a way that they could be imported
+into another python script, if necessary, but that is not the main way
+to use them (and may be untested).
+
+AsapFileToTrajectory.py oldfile newfile [frame1 [frame2]]
+
+    Converts an Asap version 1.x netcdf file to an ASE version 2
+    trajectory file.  If a single frame number is given, only that
+    frame is converted.  If two frame numbers are given, all frame
+    from the first to the last are converted (-1 means the last
+    frame).  If no frame numbers are given, all frames are converted.
+
+

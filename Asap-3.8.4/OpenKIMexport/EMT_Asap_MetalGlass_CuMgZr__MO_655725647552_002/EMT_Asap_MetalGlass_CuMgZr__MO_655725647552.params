@@ -1,0 +1,39 @@
+NEWELEMENT 1 Zr
+  V0 2.320809000000000
+  kappa 3.911040000000000
+  eta2 2.282059000000000
+  n0 0.031831000000000
+  mass 91.224000000000004
+  S0 1.785939000000000
+  E0 -6.300000000000000
+  lambda 2.247348000000000
+ENDELEMENT -1
+NEWELEMENT 2 Mg
+  V0 2.229870000000000
+  kappa 4.435425000000000
+  eta2 2.541137000000000
+  n0 0.035544000000000
+  mass 24.305000000000000
+  S0 1.766399000000000
+  E0 -1.487000000000000
+  lambda 3.292725000000000
+ENDELEMENT -1
+NEWELEMENT 3 Cu
+  V0 1.993953000000000
+  kappa 4.943848000000000
+  eta2 3.039871000000000
+  n0 0.063738000000000
+  mass 63.545999999999999
+  S0 1.412903124000000
+  E0 -3.510000000000000
+  lambda 3.693666000000000
+ENDELEMENT -1
+STOP -1
+
+
+(anything below the STOP line is ignored)
+
+These are special EMT parameters from ASAP, intended for use
+for simulation of bulk metallic glasses only.  
+Units are based on eV, Angstrom and atomic mass units.
+The mass parameter will not actually be used by the KIM calculator.

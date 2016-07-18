@@ -1,0 +1,70 @@
+Element(s);Structure;Property;Value;Temp.;Reference
+Al;fcc;a;4.0194;0;Jakob Schi퓍z, 2013
+Al;fcc;B;79.4;0;
+Al;fcc;C11;114.3;0;C. Kittel, Introduction to solid state physics, John Wiley & Sons, 8th edition, 2005
+Al;fcc;C12;61.9;0;C. Kittel, Introduction to solid state physics, John Wiley & Sons, 8th edition, 2005
+Al;fcc;C44;31.6;0;C. Kittel, Introduction to solid state physics, John Wiley & Sons, 8th edition, 2005
+Al;fcc;Ecoh;3.39;0;C. Kittel, Introduction to solid state physics, John Wiley & Sons, 8th edition, 2005
+Al;fcc;E111;0.405;0;Simon Brodersen, 2013
+Al;fcc;E100;0.506;0;Simon Brodersen, 2013
+Al;fcc;Esf;0.132;0;Jakob Schi퓍z, PBEsol, 2014
+;;;;;
+Ni;fcc;a;3.475;0;Jakob Schi퓍z, 2013
+Ni;fcc;B;187.6;0;
+Ni;fcc;C11;261.2;0;C. Kittel, Introduction to solid state physics, John Wiley & Sons, 8th edition, 2005
+Ni;fcc;C12;150.8;0;C. Kittel, Introduction to solid state physics, John Wiley & Sons, 8th edition, 2005
+Ni;fcc;C44;131.7;0;C. Kittel, Introduction to solid state physics, John Wiley & Sons, 8th edition, 2005
+Ni;fcc;Ecoh;4.44;0;C. Kittel, Introduction to solid state physics, John Wiley & Sons, 8th edition, 2005
+Ni;fcc;E111;0.782;0;Simon Brodersen, 2013
+Ni;fcc;E100;1.011;0;Simon Brodersen, 2013
+Ni;fcc;Esf;0.164;0;Jakob Schi퓍z, PBEsol, 2014
+;;;;;
+Cu;fcc;a;3.579;0;Jakob Schi퓍z, 2013
+Cu;fcc;B;142;0;
+Cu;fcc;C11;176.2;0;C. Kittel, Introduction to solid state physics, John Wiley & Sons, 8th edition, 2005
+Cu;fcc;C12;124.9;0;C. Kittel, Introduction to solid state physics, John Wiley & Sons, 8th edition, 2005
+Cu;fcc;C44;81.8;0;C. Kittel, Introduction to solid state physics, John Wiley & Sons, 8th edition, 2005
+Cu;fcc;Ecoh;3.49;0;C. Kittel, Introduction to solid state physics, John Wiley & Sons, 8th edition, 2005
+Cu;fcc;E111;0.543;0;Simon Brodersen, 2013
+Cu;fcc;E100;0.706;0;Simon Brodersen, 2013
+Cu;fcc;Esf;0.039;0;Jakob Schi퓍z, PBEsol, 2014
+;;;;;
+Pd;fcc;a;3.879;0;Jakob Schi퓍z, 2013
+Pd;fcc;B;195.4;0;
+Pd;fcc;C11;234.1;0;C. Kittel, Introduction to solid state physics, John Wiley & Sons, 8th edition, 2005
+Pd;fcc;C12;176.1;0;C. Kittel, Introduction to solid state physics, John Wiley & Sons, 8th edition, 2005
+Pd;fcc;C44;71.2;0;C. Kittel, Introduction to solid state physics, John Wiley & Sons, 8th edition, 2005
+Pd;fcc;Ecoh;3.89;0;C. Kittel, Introduction to solid state physics, John Wiley & Sons, 8th edition, 2005
+Pd;fcc;E111;0.701;0;Simon Brodersen, 2013
+Pd;fcc;E100;0.891;0;Simon Brodersen, 2013
+Pd;fcc;Esf;0.165;0;Jakob Schi퓍z, PBEsol, 2014
+;;;;;
+Ag;fcc;a;4.054;0;Jakob Schi퓍z, 2013
+Ag;fcc;B;108.7;0;
+Ag;fcc;C11;131.5;0;C. Kittel, Introduction to solid state physics, John Wiley & Sons, 8th edition, 2005
+Ag;fcc;C12;97.3;0;C. Kittel, Introduction to solid state physics, John Wiley & Sons, 8th edition, 2005
+Ag;fcc;C44;51.1;0;C. Kittel, Introduction to solid state physics, John Wiley & Sons, 8th edition, 2005
+Ag;fcc;Ecoh;2.95;0;C. Kittel, Introduction to solid state physics, John Wiley & Sons, 8th edition, 2005
+Ag;fcc;E111;0.45;0;Simon Brodersen, 2013
+Ag;fcc;E100;0.579;0;Simon Brodersen, 2013
+Ag;fcc;Esf;0.023;0;Jakob Schi퓍z, PBEsol, 2014
+;;;;;
+Pt;fcc;a;3.919;0;Jakob Schi퓍z, 2013
+Pt;fcc;B;278.3;300;
+Pt;fcc;C11;346.7;300;C. Kittel, Introduction to solid state physics, John Wiley & Sons, 8th edition, 2005
+Pt;fcc;C12;250.7;300;C. Kittel, Introduction to solid state physics, John Wiley & Sons, 8th edition, 2005
+Pt;fcc;C44;76.5;300;C. Kittel, Introduction to solid state physics, John Wiley & Sons, 8th edition, 2005
+Pt;fcc;Ecoh;5.84;0;C. Kittel, Introduction to solid state physics, John Wiley & Sons, 8th edition, 2005
+Pt;fcc;E111;0.791;0;Simon Brodersen, 2013
+Pt;fcc;E100;1.068;0;Simon Brodersen, 2013
+Pt;fcc;Esf;0.315;0;Jakob Schi퓍z, PBEsol, 2014
+;;;;;
+Au;fcc;a;3.919;0;Jakob Schi퓍z, 2013
+Au;fcc;B;180.3;0;
+Au;fcc;C11;201.6;0;C. Kittel, Introduction to solid state physics, John Wiley & Sons, 8th edition, 2005
+Au;fcc;C12;169.7;0;C. Kittel, Introduction to solid state physics, John Wiley & Sons, 8th edition, 2005
+Au;fcc;C44;45.4;0;C. Kittel, Introduction to solid state physics, John Wiley & Sons, 8th edition, 2005
+Au;fcc;Ecoh;3.81;0;C. Kittel, Introduction to solid state physics, John Wiley & Sons, 8th edition, 2005
+Au;fcc;E111;0.446;0;Simon Brodersen, 2013
+Au;fcc;E100;0.63;0;Simon Brodersen, 2013
+Au;fcc;Esf;0.026;0;Jakob Schi퓍z, PBEsol, 2014

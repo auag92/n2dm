@@ -1,0 +1,17 @@
+# Unknown system with GNU compiler
+CC=gcc
+CXX=g++
+CFLAGS = -fPIC -pipe -g -Wall -Wno-sign-compare -Wno-unused-function -DBRENNER_DWORD_ALIGN
+CXXFLAGS = $(CFLAGS)
+SWIGGEDCXXFLAGS = -Wno-strict-aliasing -Wno-uninitialized
+BRENNERCFLAGS =  -Wno-strict-aliasing -Wno-unused
+LIBS = -lm
+CSRC_EXTRA =
+SWIG=swig
+MPIINCLUDES=
+CXXSHARED = $(CXX) -shared -fPIC -g
+CXXFLAGSGPROF = $(CFLAGS) -pg -g
+CXXFLAGSDEBUG = $(CFLAGS)
+DEPENDFLAG = -MM
+DEPENDCLEAN = sed -e 's@/usr/[^ ]*@@g' | sed -e '/^ *\\ *$$/d'
+CPP_LIB="/usr/lib/libstdc++.so.6"

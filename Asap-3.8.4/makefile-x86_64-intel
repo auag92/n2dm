@@ -1,0 +1,17 @@
+# Intel compiler on Pentium 4
+CC=icc
+CXX=icpc
+CFLAGS = -O3 -g -xT -fPIC -DSTACKTRACELINUX -vec_report0 -fvisibility=hidden
+CXXFLAGS = $(CFLAGS)
+EXTRA_LIBS = -lbfd -liberty
+LIBS = -lm $(EXTRA_LIBS)
+CSRC_EXTRA = stacktrace.c
+SWIG=swig
+MPIINCLUDES=
+CXXSHARED = $(CXX) -shared
+CXXFLAGSGPROF = -O3 -g -fPIC -pg
+CXXFLAGSDEBUG = -O3 -tpp7 -xW -g
+DEPENDFLAG = -MM
+DEPENDCLEAN = sed -e 's@/usr/[^ ]*@@g' | sed -e '/^ *\\ *$$/d'
+# PYINSTALL := $(DESTDIR)/$(PYPREFIX)/lib64/python$(PYVER)/site-packages/Asap
+# BININSTALL := $(DESTDIR)/$(PYPREFIX)/lib64/python$(PYVER)/site-packages

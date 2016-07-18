@@ -1,0 +1,10 @@
+This directory contains Asap-related stuff that belongs to research projects, but may be useful for other Asap users.
+
+
+PROJECTS:
+
+NanoparticleMC:
+    Scripts for running two-level Monte Carlo simulations of nanoparticles.
+    The code is in asap3.NanoparticleMC
+
+

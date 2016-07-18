@@ -1,0 +1,226 @@
+#!/usr/bin/python
+# Emacs: This is -*- python -*-
+
+"""asap-qsub: Submit an Asap job to Niflheim.
+
+Usage:
+    asap-qsub [options] job.py [job-command-line]
+
+where options are any options that could otherwise be passed to qsub
+and job-command-line is passed on to the job.  The job file MUST end in .py
+
+In addition to the usual qsub options, an option of the form --ASAP=X
+may be passed, where X is one of the letters S, P or T specifying a
+serial, parallel or multithreaded application (overriding the usual
+detection).
+"""
+
+import sys
+import os
+import string
+import copy
+import subprocess
+import time
+
+options = []
+job = []
+script = None
+asapargs = ""
+quiet = False
+
+# Parse the asap-qsub command line
+for arg in sys.argv[1:]:
+    if script is None:
+        if arg.lower().endswith('.py'):
+            script = arg
+        else:
+            if arg.upper().startswith("--ASAP="):
+                asapargs = arg[7:].upper()
+            elif arg.lower() == "--quiet":
+                quiet = True
+            else:
+                options.append(arg)
+    else:
+        job.append(arg)
+
+if script is None:
+    raise ValueError("Cannot recognize the job script on the command line.  It must end with .py")
+
+# Construct the qsub command line.
+qsub = ["qsub"]
+qsub.extend(options)
+
+# Construct the job command line.  All options are single-quoted in
+# case they contain spaces or similar.
+jobcommand = script
+for arg in job:
+    jobcommand = jobcommand + " '" + arg + "'"
+
+# Find default name for job
+defname = os.path.splitext(os.path.basename(script))[0]
+assert script.endswith(defname+'.py')
+# Remove weird characters
+for i, c in enumerate(defname):
+    if not c in string.ascii_letters+string.digits:
+        defname = defname[:i] + "_" + defname[i+1:]
+
+# Parse the script, collect any #PBS lines, #ASAP lines or AsapThread() calls
+threading = False
+pbslines = ["#PBS -N "+defname+"\n"]
+for line in open(script):
+    if line.startswith("#PBS"):
+        pbslines.append(line)
+    if line.startswith("#ASAP "):
+        if asapargs == "":
+            asapargs = line[6:].strip().upper()
+        else:
+            print >>sys.stderr, "#ASAP line in script overridden by command line."
+    thr = line.find("AsapThreads(")
+    if thr >= 0 and line[:thr].find("#") == -1:
+        threading = True
+        print "Call to AsapThreads detected.  Assuming threading."
+
+# Check for the number of nodes etc.
+alloptions = copy.copy(options)
+for line in pbslines:
+    alloptions.extend(line.split()[1:])
+i = 0
+cpus = cores = None
+ppn = 1
+ppnmax = 8  # For selecting processor affinity - be conservative!
+mode = "S"
+nodetype = "NONE"
+while i < len(alloptions) - 1:
+    if alloptions[i] == '-l' and alloptions[i+1].startswith("nodes="):
+        i += 1
+        parts = alloptions[i][6:].split(":")
+        try:
+            cpus = int(parts[0])
+        except ValueError:
+            print >>sys.stderr, "Failed to parse nodes specification:", alloptions[i]
+            mode = "P"  # Assume a cryptic mode specification
+        else:
+            cores = cpus
+            for word in parts[1:]:
+                if word.startswith("opteron"):
+                    ppnmax=4
+                    nodetype = word
+                elif word.startswith("xeon"):
+                    nodetype = word
+                elif word.startswith("ppn="):
+                    ppn = int(word[4:])
+                    cores = cpus * ppn
+        i = len(alloptions)
+    i += 1
+
+# Override detection of threading with command line or #ASAP line in script.
+if "N" in asapargs:
+    threading = False
+    print "Threading forced OFF"
+if "T" in asapargs:
+    threading = True
+    print "Threading forced ON"
+
+# Detect paralle versus serial
+if cpus is not None:
+    print "Detected %d nodes with ppn=%d for a total of %d cpus." % (cpus, ppn,
+                                                                     cores)
+    print "Node type: %s" % nodetype
+    print "Threading:", threading
+    if threading:
+        if cpus == 1:
+            mode = "S"
+        else:
+            mode = "P"
+    else:
+        if cores == 1:
+            mode = "S"
+        else:
+            mode = "P"
+
+# Override parallel versus serial detection
+if "S" in asapargs:
+    mode = "S"
+    print "Forces serial mode"
+if "P" in asapargs:
+    mode = "P"
+    print "Forced parallel mode"
+            
+# Construct the script to be submitted.
+submitscript = "#!/bin/bash\n"
+for line in pbslines:
+    submitscript += line
+
+mpiargs = ""
+if mode == "P":
+    if threading:
+        mpiargs = " --pernode --mca mpi_paffinity_alone 0"
+    else:
+        if ppn == ppnmax:
+            mpiargs += " --mca mpi_paffinity_alone 1"
+            print "Enabling processor affinity."
+
+parallelsubmitscript = """
+chmod +w %s
+
+#MPIDIR=`python -c 'import asapmpiinfo3; asapmpiinfo3.printmpiinfo()'`
+#echo "MPIDIR: $MPIDIR"
+#MPIVARSFROM=$MPIDIR/bin/mpivars-*.sh
+#if [ -r $MPIVARSFROM ]; then
+#    source $MPIVARSFROM
+#else
+#    echo "The MPI installation used to compile Asap is gone: $MPIVARSFROM not found"
+#    exit 1
+#fi
+
+mpiexec %s asap-python %s
+""" % (script, mpiargs, jobcommand)
+
+serialsubmitscript = """
+chmod +w %s
+
+asap-python %s
+""" % (script, jobcommand)
+
+if mode == "P":
+    submitscript += parallelsubmitscript
+elif mode == "S":
+    submitscript += serialsubmitscript
+
+if os.environ.has_key("ASAPQSUBVERBOSE"):
+    print "Submitting job:"
+    for line in submitscript.split("\n"):
+        print "   ", line
+    print "Submitting with the command: ", " ".join(qsub)
+print
+
+qsubproc = subprocess.Popen(qsub, stdin=subprocess.PIPE,
+                            stdout=subprocess.PIPE, close_fds=True)
+(out, err) = qsubproc.communicate(submitscript)
+errcode = qsubproc.wait()
+if errcode:
+    print >>sys.stderr, "qsub failed with error code", str(errcode)
+    print >>sys.stderr, "Command line:", qsub
+    sys.exit("qsub failed")
+print "JOB ID:", out
+
+# Now, check when it will start
+if not quiet:
+    sleeptime = [2, 8]
+    cmd = ["showstart", out]
+    for s in sleeptime:
+        if s > 0:
+            time.sleep(s)
+        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE,
+                                stderr=subprocess.PIPE, close_fds=True)
+        (out, err) = proc.communicate()
+        errcode = proc.wait()
+        if not errcode:
+            print out
+            break
+    if errcode:
+        print "Could not get an estimate of when the job will start!"
+        print "The error code from", " ".join(cmd), "was:"
+        print err
+        print "(This is most likely harmless)"
+
