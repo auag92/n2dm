@@ -12,7 +12,7 @@ namespace ASAPSPACE {
 
 string GetVersion()
 {
-  return "ASAP version 3.8.4 serial, compiled 2016-07-15 20:52 on apaar-VPCEB34EN using 'distutils'";
+  return "ASAP version 3.8.4 serial, compiled 2016-07-18 20:26 on apaar-VPCEB34EN using 'distutils'";
 }
 
 string GetShortVersion()
