@@ -5,6 +5,8 @@ MAINTAINER Apaar Shanker <apaar92@gmail.com>
 USER root
 
 RUN apt-get update
+RUN apt-get install -y build-essential
+#RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test 
 RUN apt-get install -y libstdc++6
 # Install python
 RUN apt-get install -y python
@@ -16,6 +18,7 @@ RUN apt-get install -y python-pip
 ADD requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
+RUN conda install libgcc
 ADD Asap-3.8.4 Asap-3.8.4
 RUN cd Asap-3.8.4 \
                   && make depend \
