@@ -6,7 +6,7 @@ USER root
 
 RUN apt-get update
 RUN apt-get install -y build-essential
-#RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test 
+#RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test
 RUN apt-get install -y libstdc++6
 # Install python
 RUN apt-get install -y python
@@ -30,9 +30,9 @@ RUN cd Asap-3.8.4 \
 
 RUN ls
 RUN pwd
-
-RUN export PATH=/home/main/notebooks/Asap-3.8.4/x86_64:$PATH
-RUN export PYTHONPATH=/home/main/notebooks/Asap-3.8.4/Python:/home/main/notebooks/Asap-3.8.4/x86_64:$PYTHONPATH
+  
+ENV export PATH=/home/main/notebooks/Asap-3.8.4/x86_64:$PATH
+ENV export PYTHONPATH=/home/main/notebooks/Asap-3.8.4/Python:/home/main/notebooks/Asap-3.8.4/x86_64:$PYTHONPATH
 
 #RUN export PATH=/home/main/notebooks/Asap-3.8.4/Python:$PATH
 #RUN export PYTHONPATH=/home/main/notebooks/Asap-3.8.4/Python:$PYTHONPATH
